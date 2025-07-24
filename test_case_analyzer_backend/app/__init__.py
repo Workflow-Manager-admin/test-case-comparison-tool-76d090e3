@@ -3,6 +3,8 @@ from flask_cors import CORS
 from .routes.health import blp
 from flask_smorest import Api
 
+# Import the analyzer blueprint
+from .routes.analyzer import blp as analyzer_blp
 
 app = Flask(__name__)
 app.url_map.strict_slashes = False
@@ -14,6 +16,6 @@ app.config['OPENAPI_URL_PREFIX'] = '/docs'
 app.config["OPENAPI_SWAGGER_UI_PATH"] = ""
 app.config["OPENAPI_SWAGGER_UI_URL"] = "https://cdn.jsdelivr.net/npm/swagger-ui-dist/"
 
-
 api = Api(app)
 api.register_blueprint(blp)
+api.register_blueprint(analyzer_blp)
